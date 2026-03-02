@@ -196,6 +196,8 @@ body {
 .stat-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
 
 .stat-card h3 {
@@ -238,6 +240,8 @@ body {
 .benefit-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
 
 .benefit-card h3 {
@@ -281,6 +285,8 @@ body {
 .feature-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
 
 .feature-card h3 {
@@ -418,6 +424,8 @@ body {
 .contact-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    filter: grayscale(100%);
+    opacity: 0.6;
 }
 
 .contact-card h3 {
