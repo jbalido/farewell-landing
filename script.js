@@ -37,7 +37,7 @@ signupForm.addEventListener('submit', async function(e) {
     
     try {
         // Submit to Google Sheets via Web App
-        const response = await fetch('https://script.google.com/macros/s/AKfycby6ccjeYxtGqvRFqVfizt1Q7sF-GcWa80egzkOwRsPzzslw8S_-a60hkU9C1cMMacJ3EA/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbzPSZoIx70dJv3VvakX0sibfv_GbT8P_FQgO7zVANZ-FtuIM3ejSwmHj_AlVVrBgnAf7A/exec', {
             method: 'POST',
             mode: 'no-cors', // Required for Google Apps Script
             headers: {
