@@ -78,7 +78,7 @@ signupForm.addEventListener('submit', async function(e) {
         
     } catch (error) {
         console.error('Error submitting form:', error);
-        alert('There was an error submitting your information. Please try again or contact us directly at hello@farewell.ph');
+        alert('There was an error submitting your information. Please try again or contact us directly at info@farewell.ph');
         
         // Re-enable submit button
         submitButton.textContent = originalText;

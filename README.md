@@ -136,7 +136,7 @@ To use `farewell.ph`:
 ## Customization
 
 ### Update Contact Email
-Change `hello@farewell.ph` in:
+Change `info@farewell.ph` in:
 - `index.html` (Contact section)
 - `script.js` (Error message)
 
@@ -204,7 +204,7 @@ To improve SEO further:
 ## Support
 
 For questions or issues:
-- Email: hello@farewell.ph
+- Email: info@farewell.ph
 - GitHub Issues: [Create an issue]
 
 ## License

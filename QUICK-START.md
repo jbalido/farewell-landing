@@ -196,7 +196,7 @@ Your landing page is now live and collecting signups!
 
 - Check `DEPLOYMENT.md` for detailed guides
 - Check `README.md` for project documentation
-- Email: hello@farewell.ph
+- Email: info@farewell.ph
 
 ## 🎉 Congratulations!
 
