@@ -101,14 +101,15 @@ body {
 .hero-status {
     font-size: 1.25rem;
     margin-bottom: 2.5rem;
-    color: var(--accent-gold);
+    color: white;
     font-weight: 600;
+    opacity: 0.9;
 }
 
 /* Buttons */
 .btn-primary {
-    background: linear-gradient(135deg, var(--accent-gold) 0%, #d4b574 100%);
-    color: var(--primary-dark);
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-light) 100%);
+    color: white;
     padding: 1rem 2.5rem;
     border: none;
     border-radius: 8px;
@@ -118,12 +119,12 @@ body {
     text-decoration: none;
     display: inline-block;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+    box-shadow: 0 4px 12px rgba(44, 82, 130, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(201, 169, 97, 0.4);
+    box-shadow: 0 8px 20px rgba(44, 82, 130, 0.4);
 }
 
 .btn-large {
@@ -170,13 +171,14 @@ body {
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+    border: 1px solid var(--border-light);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(30, 58, 95, 0.12);
+    box-shadow: 0 10px 40px rgba(30, 58, 95, 0.12);
 }
 
 .stat-icon {
@@ -254,13 +256,14 @@ body {
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+    border: 1px solid var(--border-light);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(30, 58, 95, 0.12);
+    box-shadow: 0 10px 40px rgba(30, 58, 95, 0.12);
 }
 
 .feature-icon {
