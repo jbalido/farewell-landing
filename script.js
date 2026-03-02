@@ -36,32 +36,21 @@ signupForm.addEventListener('submit', async function(e) {
     submitButton.disabled = true;
     
     try {
-        // Replace with your actual form submission endpoint
-        // Option 1: Use Formspree (free service)
-        // const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // });
+        // Submit to Google Sheets via Web App
+        const response = await fetch('https://script.google.com/macros/s/AKfycbwiSYWtAmU4sMUO0Z9u13xzEiwHB0XehLrq7tIV0zhEYE69Q9l5LPDf1IqvFJChNsoB_g/exec', {
+            method: 'POST',
+            mode: 'no-cors', // Required for Google Apps Script
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
         
-        // Option 2: Use your own backend endpoint
-        // const response = await fetch('https://farewell.ph/api/waitlist', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        // });
+        // Note: no-cors mode doesn't allow reading the response
+        // We'll assume success if no error is thrown
+        console.log('Form submitted to Google Sheets:', data);
         
-        // For demo purposes, simulate successful submission
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Log to console (for testing)
-        console.log('Form submitted:', data);
-        
-        // Store in localStorage as backup
+        // Also store in localStorage as backup
         const submissions = JSON.parse(localStorage.getItem('waitlist_submissions') || '[]');
         submissions.push({
             ...data,
@@ -72,9 +61,6 @@ signupForm.addEventListener('submit', async function(e) {
         // Show success message
         signupForm.style.display = 'none';
         successMessage.style.display = 'block';
-        
-        // Optional: Send to Google Sheets or other service
-        // You can integrate with Google Sheets API or Zapier webhook here
         
     } catch (error) {
         console.error('Error submitting form:', error);
