@@ -117,12 +117,32 @@ window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
     if (currentScroll > 100) {
-        header.style.boxShadow = '0 4px 12px rgba(30, 58, 95, 0.1)';
+        header.style.boxShadow = '0 4px 12px rgba(15, 23, 42, 0.1)';
     } else {
-        header.style.boxShadow = '0 2px 8px rgba(30, 58, 95, 0.06)';
+        header.style.boxShadow = '0 2px 8px rgba(15, 23, 42, 0.06)';
     }
     
     lastScroll = currentScroll;
+});
+
+// Scroll to Top Button
+const scrollToTopBtn = document.getElementById('scrollToTop');
+
+// Show/hide button based on scroll position
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+});
+
+// Scroll to top when button is clicked
+scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
 
 // Export submissions function (for admin use)
