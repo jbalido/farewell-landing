@@ -13,12 +13,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Form submission handler - shared function
-async function submitFormData(formData, submitButton, originalText, formElement, successElement) {
+async function submitFormData(formData, submitButton, originalText) {
     const data = {
         name: formData.get('name'),
         email: formData.get('email'),
         business: formData.get('business') || '',
-        role: formData.get('role') || 'provider',
+        role: 'provider',
         message: formData.get('message') || ''
     };
     
@@ -43,16 +43,15 @@ async function submitFormData(formData, submitButton, originalText, formElement,
         });
         localStorage.setItem('waitlist_submissions', JSON.stringify(submissions));
         
-        // Show success message
-        if (formElement && successElement) {
-            formElement.style.display = 'none';
-            successElement.style.display = 'block';
-        } else {
-            // For quick form, scroll to success message
-            document.getElementById('signupForm').style.display = 'none';
-            document.getElementById('successMessage').style.display = 'block';
-            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
-        }
+        // Show success message by replacing form
+        const formContainer = submitButton.closest('form');
+        formContainer.innerHTML = `
+            <div class="success-message" style="display: block; text-align: center; padding: 2rem;">
+                <div class="success-icon" style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+                <h3 style="font-size: 1.75rem; color: var(--success); margin-bottom: 0.5rem;">Thank You!</h3>
+                <p style="color: white; font-size: 1.125rem; text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);">We've received your information and will be in touch within 24 hours.</p>
+            </div>
+        `;
         
     } catch (error) {
         console.error('Error submitting form:', error);
@@ -76,25 +75,7 @@ if (quickSignupForm) {
         submitButton.textContent = 'Submitting...';
         submitButton.disabled = true;
         
-        await submitFormData(formData, submitButton, originalText, null, null);
-    });
-}
-
-// Detailed signup form handler
-const signupForm = document.getElementById('signupForm');
-const successMessage = document.getElementById('successMessage');
-
-if (signupForm) {
-    signupForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(signupForm);
-        const submitButton = signupForm.querySelector('button[type="submit"]');
-        const originalText = submitButton.textContent;
-        submitButton.textContent = 'Submitting...';
-        submitButton.disabled = true;
-        
-        await submitFormData(formData, submitButton, originalText, signupForm, successMessage);
+        await submitFormData(formData, submitButton, originalText);
     });
 }
 
