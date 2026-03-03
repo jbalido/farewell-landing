@@ -170,6 +170,61 @@ window.exportSubmissions = function() {
     window.URL.revokeObjectURL(url);
 };
 
+// Download brochure as PDF
+window.downloadBrochure = async function() {
+    const button = event.target;
+    const originalText = button.textContent;
+    
+    try {
+        button.textContent = '⏳ Preparing PDF...';
+        button.disabled = true;
+        
+        // Open brochure in hidden iframe and trigger print
+        const iframe = document.createElement('iframe');
+        iframe.style.display = 'none';
+        iframe.src = 'brochure.html?print=true';
+        document.body.appendChild(iframe);
+        
+        // Wait for iframe to load
+        iframe.onload = function() {
+            setTimeout(() => {
+                try {
+                    iframe.contentWindow.print();
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    
+                    // Remove iframe after print dialog closes
+                    setTimeout(() => {
+                        document.body.removeChild(iframe);
+                    }, 1000);
+                } catch (error) {
+                    console.error('Print error:', error);
+                    // Fallback: open in new tab
+                    window.open('brochure.html', '_blank');
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    document.body.removeChild(iframe);
+                }
+            }, 500);
+        };
+        
+        // Fallback if iframe fails to load
+        iframe.onerror = function() {
+            window.open('brochure.html', '_blank');
+            button.textContent = originalText;
+            button.disabled = false;
+            document.body.removeChild(iframe);
+        };
+        
+    } catch (error) {
+        console.error('Download error:', error);
+        // Fallback: open in new tab
+        window.open('brochure.html', '_blank');
+        button.textContent = originalText;
+        button.disabled = false;
+    }
+};
+
 // Console message for developers
 console.log('%c🕊️ Farewell PH', 'font-size: 24px; font-weight: bold; color: #2c5282;');
 console.log('%cTo export waitlist submissions, run: exportSubmissions()', 'font-size: 14px; color: #4a5568;');
