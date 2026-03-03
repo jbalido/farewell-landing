@@ -123,6 +123,56 @@ body {
     margin-bottom: 2.5rem;
 }
 
+/* Quick Signup Form */
+.quick-signup-form {
+    max-width: 900px;
+    margin: 2.5rem auto 2rem;
+}
+
+.quick-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    gap: 1rem;
+    align-items: start;
+}
+
+.quick-form-row input {
+    padding: 1rem 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-dark);
+    transition: all 0.3s ease;
+}
+
+.quick-form-row input:focus {
+    border-color: var(--accent-gold);
+    background: white;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+}
+
+.quick-form-row input::placeholder {
+    color: var(--text-light);
+}
+
+.btn-quick {
+    padding: 1rem 2rem;
+    white-space: nowrap;
+    font-size: 1.125rem;
+}
+
+.quick-form-note {
+    text-align: center;
+    color: white;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    opacity: 0.95;
+    font-weight: 500;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
 .hero-benefits {
     display: flex;
     gap: 2rem;
@@ -344,6 +394,10 @@ body {
 
 /* Coverage Section */
 .coverage {
+    background: white;
+}
+
+.providers {
     background: white;
 }
 
@@ -608,6 +662,19 @@ body {
 
     .hero-description {
         font-size: 1rem;
+    }
+
+    .quick-form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .btn-quick {
+        width: 100%;
+    }
+
+    .quick-form-note {
+        font-size: 0.875rem;
     }
 
     .hero-benefits {

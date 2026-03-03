@@ -12,45 +12,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Form submission handler
-const signupForm = document.getElementById('signupForm');
-const successMessage = document.getElementById('successMessage');
-
-signupForm.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(signupForm);
+// Form submission handler - shared function
+async function submitFormData(formData, submitButton, originalText, formElement, successElement) {
     const data = {
         name: formData.get('name'),
         email: formData.get('email'),
-        business: formData.get('business'),
-        role: formData.get('role'),
-        message: formData.get('message')
+        business: formData.get('business') || '',
+        role: formData.get('role') || 'provider',
+        message: formData.get('message') || ''
     };
-    
-    // Disable submit button
-    const submitButton = signupForm.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Submitting...';
-    submitButton.disabled = true;
     
     try {
         // Submit to Google Sheets via Web App
-        const response = await fetch('https://script.google.com/macros/s/AKfycbzPSZoIx70dJv3VvakX0sibfv_GbT8P_FQgO7zVANZ-FtuIM3ejSwmHj_AlVVrBgnAf7A/exec', {
+        await fetch('https://script.google.com/macros/s/AKfycbzPSZoIx70dJv3VvakX0sibfv_GbT8P_FQgO7zVANZ-FtuIM3ejSwmHj_AlVVrBgnAf7A/exec', {
             method: 'POST',
-            mode: 'no-cors', // Required for Google Apps Script
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         });
         
-        // Note: no-cors mode doesn't allow reading the response
-        // We'll assume success if no error is thrown
         console.log('Form submitted to Google Sheets:', data);
         
-        // Also store in localStorage as backup
+        // Store in localStorage as backup
         const submissions = JSON.parse(localStorage.getItem('waitlist_submissions') || '[]');
         submissions.push({
             ...data,
@@ -59,8 +44,15 @@ signupForm.addEventListener('submit', async function(e) {
         localStorage.setItem('waitlist_submissions', JSON.stringify(submissions));
         
         // Show success message
-        signupForm.style.display = 'none';
-        successMessage.style.display = 'block';
+        if (formElement && successElement) {
+            formElement.style.display = 'none';
+            successElement.style.display = 'block';
+        } else {
+            // For quick form, scroll to success message
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        }
         
     } catch (error) {
         console.error('Error submitting form:', error);
@@ -70,7 +62,41 @@ signupForm.addEventListener('submit', async function(e) {
         submitButton.textContent = originalText;
         submitButton.disabled = false;
     }
-});
+}
+
+// Quick signup form handler
+const quickSignupForm = document.getElementById('quickSignupForm');
+if (quickSignupForm) {
+    quickSignupForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(quickSignupForm);
+        const submitButton = quickSignupForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Submitting...';
+        submitButton.disabled = true;
+        
+        await submitFormData(formData, submitButton, originalText, null, null);
+    });
+}
+
+// Detailed signup form handler
+const signupForm = document.getElementById('signupForm');
+const successMessage = document.getElementById('successMessage');
+
+if (signupForm) {
+    signupForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(signupForm);
+        const submitButton = signupForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        submitButton.textContent = 'Submitting...';
+        submitButton.disabled = true;
+        
+        await submitFormData(formData, submitButton, originalText, signupForm, successMessage);
+    });
+}
 
 // Add animation on scroll
 const observerOptions = {
