@@ -199,6 +199,32 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Brochure Download */
+.brochure-download {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.btn-brochure {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--primary-dark);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-brochure:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
 /* Buttons */
 .btn-primary {
     background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
