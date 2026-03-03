@@ -104,18 +104,41 @@ body {
 
 .hero-subtitle {
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     opacity: 0.95;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.hero-status {
-    font-size: 1.25rem;
-    margin-bottom: 2.5rem;
-    color: white;
-    font-weight: 600;
+.hero-description {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
     opacity: 0.9;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-hero {
+    margin-bottom: 2.5rem;
+}
+
+.hero-benefits {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.hero-benefit {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* Buttons */
@@ -299,6 +322,63 @@ body {
 .feature-card p {
     color: var(--text-gray);
     font-size: 0.95rem;
+}
+
+/* Trust Message */
+.trust-message {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-gold);
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.06);
+}
+
+.trust-message p {
+    color: var(--text-gray);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Coverage Section */
+.coverage {
+    background: white;
+}
+
+.coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto 2rem;
+}
+
+.coverage-item {
+    background: var(--bg-slate);
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+    border: 2px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.coverage-item:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-2px);
+}
+
+.coverage-note {
+    text-align: center;
+    color: var(--text-gray);
+    font-size: 1rem;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 /* Signup Section */
@@ -526,8 +606,17 @@ body {
         font-size: 1.125rem;
     }
 
-    .hero-status {
+    .hero-description {
         font-size: 1rem;
+    }
+
+    .hero-benefits {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero-benefit {
+        font-size: 0.9rem;
     }
 
     .section {
@@ -544,7 +633,8 @@ body {
 
     .stats-grid,
     .benefits-grid,
-    .features-grid {
+    .features-grid,
+    .coverage-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
@@ -556,6 +646,14 @@ body {
 
     .signup-card {
         padding: 2rem 1.5rem;
+    }
+
+    .trust-message {
+        padding: 1.5rem;
+    }
+
+    .trust-message p {
+        font-size: 0.95rem;
     }
 
     .footer-content {
